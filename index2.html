@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensaladas y Jugos - Presentación</title>
+    <!-- Importar fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            /* Paleta de colores refinada */
+            --primary-color: #276106;       /* Tu verde original */
+            --primary-light: #4caf50;       /* Verde más claro para detalles */
+            --secondary-color: #2980b9;     /* Azul para acciones secundarias */
+            --accent-color: #e67e22;        /* Naranja para resaltar (zanahoria/fruta) */
+            --light-bg: #ffffff;
+            --dark-text: #2c3e50;
+            --body-bg: #f4f9f1;             /* Fondo muy sutil verdoso */
+            --table-header: #1e4d04;
+            --table-stripe: #f8fdf5;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra suave */
+            --nav-height: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en links */
+            scroll-padding-top: var(--nav-height); /* Para que el navbar no tape el título */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background-color: var(--body-bg);
+            padding-top: var(--nav-height); /* Espacio para el navbar fijo */
+        }
+
+        /* --- BARRA DE NAVEGACIÓN (TOP BAR) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center; /* Centrar los items */
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            padding: 0 20px;
+            margin: 0;
+            overflow-x: auto; /* Scroll horizontal en móviles si es necesario */
+            max-width: 100%;
+            scrollbar-width: none; /* Ocultar scrollbar Firefox */
+        }
+        
+        .nav-menu::-webkit-scrollbar { display: none; } /* Ocultar scrollbar Chrome */
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 5px;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* La "barrita de color" */
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Clase activa (cuando estás en la sección) */
+        .nav-item a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item a.active::after {
+            width: 100%; /* La barra se expande */
+        }
+
+
+        /* Títulos bonitos */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3rem; line-height: 1.2; }
+        h2 { 
+            text-align: center; 
+            font-size: 2.2rem; 
+            margin-bottom: 50px; 
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        /* Decoración debajo de los H2 */
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Separación sutil entre secciones */
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px; /* Bordes más redondeados */
+            box-shadow: var(--shadow);
+            display: block;
+        }
+
+        /* --- SECCIÓN 1: BANNER PRINCIPAL --- */
+        #banner {
+            /* Degradado para darle vida al verde */
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3e8e41 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 100%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        #banner h1, #banner h3 {
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        #banner h3 { font-weight: 400; margin-bottom: 40px; }
+
+        .banner-logo-corner {
+            position: absolute;
+            top: 20px;
+            left: 20px; 
+            width: 90px; 
+            height: auto;
+            z-index: 10;
+            border-radius: 50%; /* Logo redondo */
+            border: 3px solid rgba(255,255,255,0.5);
+            background: white;
+            padding: 2px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .banner-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1); /* Caja sutil transparente */
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .banner-text {
+            flex: 1;
+            min-width: 350px;
+        }
+        
+        .banner-text h3 { 
+            color: var(--accent-color) !important; 
+            text-shadow: none !important; 
+            font-weight: 700 !important;
+        }
+
+        .banner-img {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .banner-img img {
+            border: 4px solid white;
+            transform: rotate(2deg); /* Un toque divertido */
+            transition: transform 0.3s;
+        }
+        
+        .banner-img img:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        /* --- FASE 2 --- */
+        .fase2-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-direction: row-reverse;
+        }
+        .fase2-text { flex: 1; }
+        .fase2-img { flex: 1; }
+
+        /* --- TABLAS MODERNAS --- */
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.95rem;
+            min-width: 600px; /* Evita que se aplaste en móvil */
+        }
+
+        th {
+            background-color: var(--table-header);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            color: #555;
+        }
+
+        /* Filas alternadas (Zebra) */
+        tbody tr:nth-child(even) {
+            background-color: var(--table-stripe);
+        }
+
+        /* Fila de fase destacada */
+        .phase-row td {
+            background-color: #e8f5e9;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+            border-top: 2px solid var(--primary-light);
+            text-transform: uppercase;
+        }
+        
+        /* Listas dentro de tablas */
+        table ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+        
+        table ul li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+        }
+        
+        table ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- FASE 4 (LAYOUT) --- */
+        .fase4-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Imagen más pequeña, tabla más ancha */
+            gap: 30px;
+            align-items: start;
+        }
+
+        .fase4-col {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- CARRUSEL --- */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            background: white;
+            min-height: 500px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+        }
+
+        .carousel-slide {
+            display: none;
+            padding: 30px;
+            animation: fadeEffect 0.6s;
+        }
+        
+        .carousel-slide h3 {
+            text-align: center;
+            color: var(--primary-light);
+        }
+
+        .carousel-slide.active { display: block; }
+
+        .carousel-controls {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        /* Botones bonitos */
+        .btn-carousel {
+            background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 0 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-carousel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* --- TECNOLOGÍAS --- */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border-top: 5px solid transparent;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .tech-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* --- CONCLUSIONES --- */
+        .conclusiones-content {
+            background-color: white;
+            padding: 50px;
+            border-left: 8px solid var(--accent-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .conclusiones-content p strong {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        /* --- VIDEO --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        footer strong { color: white; }
+
+        @keyframes fadeEffect {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            .nav-menu {
+                padding: 0 10px;
+            }
+
+            .banner-content, .fase2-container, .fase4-layout {
+                flex-direction: column;
+                display: flex; /* Asegura que grid pase a flex en móvil */
+            }
+            
+            #banner h1 { font-size: 2.2rem; margin-top: 40px;}
+            
+            .banner-logo-corner {
+                width: 60px;
+                top: 15px; left: 15px;
+            }
+            
+            .tech-grid { grid-template-columns: 1fr; }
+            
+            section { padding: 50px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#banner" class="nav-link active">Inicio</a></li>
+            <li class="nav-item"><a href="#fase2" class="nav-link">Fase 2</a></li>
+            <li class="nav-item"><a href="#fase3" class="nav-link">Fase 3</a></li>
+            <li class="nav-item"><a href="#fase4" class="nav-link">Fase 4</a></li>
+            <li class="nav-item"><a href="#fase5" class="nav-link">Fase 5</a></li>
+            <li class="nav-item"><a href="#tecnologias" class="nav-link">Tecnologías</a></li>
+            <li class="nav-item"><a href="#conclusiones" class="nav-link">Conclusiones</a></li>
+            <li class="nav-item"><a href="#video" class="nav-link">Video</a></li>
+        </ul>
+    </nav>
+
+    <!-- SECCIÓN 1: BANNER PRINCIPAL -->
+    <section id="banner">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.ii3YQnthaT9IMo8bZLseMgHaHa%3Fcb%3Ducfimg2%26pid%3DApi%26ucfimg%3D1&f=1&ipt=76a76aa36f8bde8360d10a036c596aafa51ebc36ba42d2fe5908e7475c43e940" alt="Logo Grupo" class="banner-logo-corner">
+
+        <h1>Ensaladas y Jugos Deliciosos y Nutritivos</h1>
+        <h3>Araceli Solares Cruz</h3>
+        
+        <div class="banner-content">
+            <div class="banner-text">
+                <h3>Descripción del Proyecto</h3>
+                <p id="project-desc">
+                    Emprender un negocio de ensaladas y jugos y poco a poco ir aumentando los menús para tener más variedad en mi comunidad, Naucalpan de Juárez, Estado de México. 
+                    <br><br>
+                    La meta para <strong>enero del 2026</strong> es concientizar a las personas para que hagan un cambio de alimentación y descubran que comer sano no requiere de mucho presupuesto. 
+                    Con ayuda de mi familia —mi hija nutrióloga, mi hijo diseñador, mi esposo en logística y yo en la preparación— ofrecemos opciones deliciosas y nutritivas.
+                </p>
+            </div>
+            <div class="banner-img">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod.s3.amazonaws.com%2Fimages%2Fdelish-beet-salad-vertical-jpg-1526064429.jpg&f=1&nofb=1&ipt=20c455d9e89ef7f1126f78e5a382326371c9b365e1a386c9326d69af598f15a9" alt="Imagen del Proyecto">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: FASE 2 -->
+    <section id="fase2">
+        <h2>Fase 2: Análisis y Definición</h2>
+        <div class="fase2-container">
+            <div class="fase2-text">
+                <h3>Objetivos</h3>
+                <p>✅ Generar conciencia sobre la importancia de la salud.</p>
+                <p>✅ Promover la cultura de tener una dieta balanceada.</p>
+                <p>✅ Dar accesibilidad a una dieta balanceada para la comunidad con ensaladas de bajo costo.</p>
+                
+                <h3 style="margin-top: 30px;">Justificación</h3>
+                <p>
+                    Este proyecto busca mejorar los hábitos alimenticios en la comunidad de Naucalpan ofreciendo ensaladas y jugos saludables, 
+                    deliciosos y accesibles. Al iniciar en enero de 2026, se pretende demostrar que una alimentación balanceada no requiere 
+                    un alto presupuesto y puede integrarse fácilmente en la vida diaria. Con el apoyo familiar y el respaldo profesional de una 
+                    nutrióloga, el negocio brindará opciones frescas y variadas que contribuyan al bienestar de la población.
+                </p>
+            </div>
+            <div class="fase2-img">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20230825%2Foriginal%2Fpngtree-people-salad-cooking-vegetable-kitchen-picture-image_8651158.png&f=1&nofb=1&ipt=7213923345d47e8497c6b1c48b1cb542260baa7786b4b3152ce162aa545653ce" alt="Fase 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: FASE 3 (CARRUSEL) -->
+    <section id="fase3">
+        <h2>Fase 3: Organización</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Utiliza los botones para ver el Diagrama de Flujo o la Tabla de Recursos.</p>
+        
+        <div id="carousel-fase3" class="carousel-container">
+            <!-- Slide 1: Diagrama de Flujo -->
+            <div class="carousel-slide active" id="f3-slide-1">
+                <h3>Diagrama de Flujo</h3>
+                <img src="https://cdn.discordapp.com/attachments/1036764006490325185/1446347570505973862/Diagrama_de_flujo.png?ex=6933a7a4&is=69325624&hm=0e26cf5169d9a32c8f2dc088dffc5f38c3ad46014d9878d5c8dc329b204bd536&" alt="Diagrama de Flujo" style="margin: 0 auto; max-height: 500px; object-fit: contain;">
+                <p style="margin-top: 15px; text-align: center;">Representación visual de los pasos y decisiones del proceso.</p>
+            </div>
+
+            <!-- Slide 2: Tabla de Organización -->
+            <div class="carousel-slide" id="f3-slide-2">
+                <h3>Tabla de Actividades y Recursos</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Actividades</th>
+                                <th>Tareas</th>
+                                <th>Recursos materiales</th>
+                                <th>Recursos tecnológicos</th>
+                                <th>Recursos financieros</th>
+                                <th>Recursos humanos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Primera Fase -->
+                            <tr class="phase-row">
+                                <td colspan="6">Primera fase: Actividades previas</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 1</strong><br>Realizar una investigación de mercado</td>
+                                <td><strong>Tarea 1.1</strong><br>Identificar el publico objetivo</td>
+                                <td>Tableta, computadora, Dispositivo móvil</td>
+                                <td>Papel y pluma o lápiz,<br>Acceso a internet</td>
+                                <td>--</td>
+                                <td>Una persona voluntaria para sondear la zona</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 1.2</strong><br>Analizar la competencia y determinar la demanda</td>
+                                <td>Teléfono celular y computadora</td>
+                                <td>Acceso a internet</td>
+                                <td>--</td>
+                                <td>Una persona voluntaria encargada de la planeación</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 2</strong><br>Desarrollo de recetas y Menús</td>
+                                <td><strong>Tarea 2.1</strong><br>Crear recetas de ensaladas saludables y deliciosas</td>
+                                <td>Tablet o celular</td>
+                                <td>Acceso a internet</td>
+                                <td>Presupuesto para marketing</td>
+                                <td>Persona encargada del desarrollo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 2.2</strong><br>Definir los precios, porciones y tamaños</td>
+                                <td>Ingredientes, Utensilios, dispositivo tableta o computadora</td>
+                                <td>Acceso a internet</td>
+                                <td>--</td>
+                                <td>Persona para la definir esta tarea</td>
+                            </tr>
+
+                            <!-- Segunda Fase -->
+                            <tr class="phase-row">
+                                <td colspan="6">Segunda fase: Actividades de desarrollo</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 3</strong><br>Desarrollo de recetas y Menús</td>
+                                <td><strong>Tarea 3.1</strong><br>Crear recetas innovadoras crear un menú atractivo</td>
+                                <td>Ingredientes y equipo de computo</td>
+                                <td>Acceso a internet</td>
+                                <td>Presupuesto para marketing</td>
+                                <td>Dos personas voluntarias: una para desarrollo y otra para menús</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 3.2</strong><br>Seleccionar ingredientes frescos y de calidad</td>
+                                <td>Hoja de papel o documento digital, espacio de almacenaje</td>
+                                <td>--</td>
+                                <td>Dinero asignado para la compra, gastos de transporte</td>
+                                <td>Una persona voluntaria para selección de ingredientes</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 4</strong><br>Plan de marketing y publicidad</td>
+                                <td><strong>Tarea 4.1</strong><br>Identificar los canales de marketing más efectivos</td>
+                                <td>Computadora, tableta o dispositivo móvil</td>
+                                <td>Internet</td>
+                                <td>--</td>
+                                <td>1 persona voluntaria encargada de esta tarea</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 4.2</strong><br>Crear contenido atractivo para redes sociales</td>
+                                <td>Computadora, tableta o celular</td>
+                                <td>Internet</td>
+                                <td>--</td>
+                                <td>1 persona encargada de realizar esta tarea</td>
+                            </tr>
+
+                            <!-- Tercera Fase -->
+                            <tr class="phase-row">
+                                <td colspan="6">Tercera fase: Actividades de concreción</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 5</strong><br>Lanzamiento del negocio</td>
+                                <td><strong>Tarea 5.1</strong><br>Abrir punto de venta y ofrecer degustaciones</td>
+                                <td>Computadora, tableta, celular, platos, cubiertos, servilletas, vasos</td>
+                                <td>Internet</td>
+                                <td>Presupuesto para degustaciones y materiales</td>
+                                <td>Dos personas: publicidad en redes y degustación</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 5.2</strong><br>Establecer sistema de pedidos y entregas</td>
+                                <td>Computadora, algún medio de transporte</td>
+                                <td>Conexión a internet, App de pedidos, Sitio web</td>
+                                <td>--</td>
+                                <td>2 personas: recibir pedidos y realizar entregas</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Actividad 6</strong><br>Evaluación y mejora continua</td>
+                                <td><strong>Tarea 6.1</strong><br>Recibir comentarios, analizar resultados, nuevas recetas</td>
+                                <td>Dispositivo móvil, computadora, ingredientes y utensilios</td>
+                                <td>Acceso a internet</td>
+                                <td>Pago de las personas encargadas</td>
+                                <td>Dos personas: encargado de redes/web y desarrollo de recetas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tarea 6.2</strong><br>Establecer metas, monitorear ventas</td>
+                                <td>Computadora o dispositivo móvil</td>
+                                <td>Acceso a internet</td>
+                                <td>--</td>
+                                <td>1 persona encargada de esta tarea</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="btn-carousel" onclick="switchSectionSlide('fase3', 1)">Ver Diagrama de Flujo</button>
+            <button class="btn-carousel" onclick="switchSectionSlide('fase3', 2)">Ver Tabla de Organización</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: FASE 4 -->
+    <section id="fase4">
+        <h2>Fase 4: Jerarquía y Roles</h2>
+        <div class="fase4-layout">
+            <div class="fase4-col" style="display: flex; align-items: center;">
+                <div>
+                    <h3 style="text-align: center;">Esquema de Jerarquización</h3>
+                    <img src="https://cdn.discordapp.com/attachments/1036764006490325185/1446352305338322954/image.png?ex=6933ac0d&is=69325a8d&hm=628bc303ea90f19ccd224facb0eb24d78644a8b5c92ca50b09928c1871304468&" alt="Jerarquía">
+                </div>
+            </div>
+
+            <div class="fase4-col">
+                <h3 style="text-align: center;">Descripción de Roles</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Puesto</th>
+                                <th>Perfil</th>
+                                <th>Etapas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Líder de proyecto</strong></td>
+                                <td>
+                                    <ul>
+                                        <li>Capacidad de dirección</li>
+                                        <li>Capacidad de toma de decisiones</li>
+                                        <li>Responsabilidad de decisiones</li>
+                                        <li>Conocimientos de administración</li>
+                                    </ul>
+                                </td>
+                                <td>Fase de inicio<br>Fase de desarrollo<br>Fase de conclusión</td>
+                                <td>
+                                    <ul>
+                                        <li>Definir el objetivo del proyecto.</li>
+                                        <li>Crear un plan de proyecto.</li>
+                                        <li>Asignar responsabilidades y tareas.</li>
+                                        <li>Gestionar el presupuesto.</li>
+                                        <li>Monitorear el progreso.</li>
+                                        <li>Resolver problemas.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Diseñador</strong></td>
+                                <td>
+                                    <ul>
+                                        <li>Conocimientos de UX</li>
+                                        <li>Creatividad visual</li>
+                                        <li>Manejo de software gráfico</li>
+                                    </ul>
+                                </td>
+                                <td>Fase de inicio<br>Fase de desarrollo</td>
+                                <td>
+                                    <ul>
+                                        <li>Crea la identidad visual de la marca (logo, colores, estilo).</li>
+                                        <li>Diseña la publicidad y el contenido para redes sociales.</li>
+                                        <li>Elabora la imagen de los menús y las etiquetas de los empaques.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nutriólogo</strong></td>
+                                <td>
+                                    <ul>
+                                        <li>Calculo dietético</li>
+                                        <li>Manejo higiénico de alimentos</li>
+                                        <li>Capacidad de comunicación</li>
+                                    </ul>
+                                </td>
+                                <td>Fase de desarrollo<br>Fase de conclusión</td>
+                                <td>
+                                    <ul>
+                                        <li>Crea y cocina las ensaladas.</li>
+                                        <li>Modifica las recetas para que sean parte de una dieta balanceada.</li>
+                                        <li>Se encarga del manejo de ingredientes (inventario, solicitud).</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Repartidor</strong></td>
+                                <td>
+                                    <ul>
+                                        <li>Orientación al cliente</li>
+                                        <li>Gestión de tiempo</li>
+                                        <li>Conocimiento de rutas</li>
+                                    </ul>
+                                </td>
+                                <td>Fase de conclusión</td>
+                                <td>
+                                    <ul>
+                                        <li>Reparte los pedidos.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: FASE 5 (CARRUSEL) -->
+    <section id="fase5">
+        <h2>Fase 5: Cronograma y Tiempos</h2>
+        <p style="text-align: center; margin-bottom: 10px;">Utiliza los botones para alternar entre el Gantt y la Tabla de Tiempos.</p>
+        
+        <div id="carousel-fase5" class="carousel-container">
+            <!-- Slide 1: Diagrama de Gantt -->
+            <div class="carousel-slide active" id="f5-slide-1">
+                <h3>Diagrama de Gantt</h3>
+                <img src="https://cdn.discordapp.com/attachments/1036764006490325185/1446354676458066122/1shEuIyf_v9_yG11Ken8T-Ll5hpPsej76GVgpQvowS0OcGbaxJwvyyf6yzBE_7A.png?ex=6933ae42&is=69325cc2&hm=ce3deb0b6f588bf040fe5085d93782b67e95bb6f74fa11124edfa2937e3d8622&"
+                 alt="Gantt" style="margin: 0 auto; max-height: 500px; object-fit: contain;">
+                <p style="margin-top: 15px;">Visualización gráfica del progreso del proyecto a lo largo del tiempo.</p>
+            </div>
+
+            <!-- Slide 2: Tabla de Tiempos -->
+            <div class="carousel-slide" id="f5-slide-2">
+                <h3>Tabla de Tiempos Detallada</h3>
+                <img src="https://cdn.discordapp.com/attachments/1036764006490325185/1446356711362527414/timetableGantt.png?ex=6933b027&is=69325ea7&hm=8c8f2544c1b24ff74cc797df6e7f85009acb7a866190cefa6dd33441bd183bc7&"
+                 alt="Tablas de tiempos" style="margin: 0 auto; max-height: 600px; object-fit: contain;">
+                <p style="margin-top: 15px;">Visualización gráfica del progreso del proyecto a lo largo del tiempo.</p>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="btn-carousel" onclick="switchSectionSlide('fase5', 1)">Ver Diagrama Gantt</button>
+            <button class="btn-carousel" onclick="switchSectionSlide('fase5', 2)">Ver Tabla de Tiempos</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 6: TECNOLOGÍAS -->
+    <section id="tecnologias">
+        <h2>Tecnologías Utilizadas</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <img src="https://placehold.co/150/e67e22/FFF?text=HTML5" alt="Icono de HTML5">
+                <h3>HTML5 / CSS3</h3>
+                <p>Estructura semántica y estilos modernos.</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://duckduckgo.com/i/09245229a9466c92.png" alt="icono de PowerPoint">
+                <h3>PowerPoint</h3>
+                <p>Para crear las diapositivas del proyecto.</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://scontent.fmex2-2.fna.fbcdn.net/v/t39.30808-1/380700650_10162533193146729_2379134611963304810_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=T9tQy1U_h34Q7kNvwFShQ0p&_nc_oc=AdmuRSh7OwfROoDkII12gySbir7s6G3Fa_7oxH-gEumiT_REMx3nn7kKGc0LHnF7A5Y&_nc_zt=24&_nc_ht=scontent.fmex2-2.fna&_nc_gid=490bUlomxX8Gg9bUEH2gAA&oh=00_AfnZWyekZl_jDynKp4KVICLXogyy9_8_v1HAGEyGZEoFyA&oe=69382B4E" alt="Icono de Facebook">
+                <h3>Facebook</h3>
+                <p>Expansión y contacto en redes sociales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 7: CONCLUSIONES -->
+    <section id="conclusiones">
+        <h2>Conclusiones y Aprendizaje</h2>
+        <div class="conclusiones-content">
+            <p id="conclusions-text">
+                <strong>Conclusión Principal:</strong> El proyecto "Ensaladas y Jugos deliciosos y nutritivos" nos permitió comprender la importancia de promover hábitos saludables en nuestra comunidad de Naucalpan. Aprendimos que ofrecer opciones nutritivas no tiene que ser caro ni complicado; con un plan bien organizado y trabajo en equipo es posible hacer un negocio que además de vender productos deliciosos, ayude a crear conciencia sobre la alimentación balanceada.
+            </p>
+            <p>
+                También descubrimos que aprovechar las habilidades de cada persona, como la experiencia en nutrición, el diseño gráfico y la logística, hace que el proyecto funcione mejor y sea más profesional.
+            </p>
+            <p>
+                Lo más valioso fue darnos cuenta de que un cambio de alimentación empieza con accesibilidad y buena información, y que desde un negocio pequeño se pueden sembrar hábitos que benefician la salud de toda la comunidad.
+            </p>
+            <p style="margin-top: 20px;">
+                <strong>Aprendizajes Clave:</strong>
+            </p>
+            <ul style="margin-left: 20px; list-style-type: none;">
+                <li style="margin-bottom: 10px;">⭐ Importancia de la planificación temprana.</li>
+                <li style="margin-bottom: 10px;">⭐ Manejo eficiente de recursos limitados.</li>
+                <li style="margin-bottom: 10px;">⭐ Adaptabilidad ante cambios en los requerimientos.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 8: VIDEO -->
+    <section id="video">
+        <h2>Video Demostrativo</h2>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Proyecto Ensaladas y Jugos. Todos los derechos reservados.</p>
+        <p><strong>Araceli Solares Cruz</strong> | Grupo M23C2G54-034</p>
+        <p><strong>Asesor:</strong> José Martin Ramírez Félix</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #777;">Fase final del módulo 23 - Prepa en Línea SEP</p>
+    </footer>
+
+    <script>
+        function switchSectionSlide(sectionName, slideNumber) {
+            const containerId = 'carousel-' + sectionName;
+            const container = document.getElementById(containerId);
+            
+            if (!container) return; 
+
+            const slides = container.querySelectorAll('.carousel-slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            const prefix = sectionName === 'fase3' ? 'f3' : 'f5';
+            const activeSlideId = prefix + '-slide-' + slideNumber;
+            const activeSlide = document.getElementById(activeSlideId);
+            
+            if (activeSlide) {
+                activeSlide.classList.add('active');
+            }
+        }
+
+        // --- SCRIPTS PARA LA BARRA DE NAVEGACIÓN Y SCROLL SPY ---
+
+        // 1. Marcar el link activo al hacer scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Lógica para determinar qué sección está visible
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // -150 es un offset para que detecte la sección un poco antes de llegar exacto
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Asignar clase activa
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Verificación estricta para evitar que todos se activen si current es vacío
+                if (current && link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
